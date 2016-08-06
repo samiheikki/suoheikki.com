@@ -6,25 +6,101 @@
   <template>
 
     <style include="shared-styles">
+
+      .card {
+        box-shadow: none;
+        background-color: inherit;
+      }
+      .hello {
+        font-size: 80px;
+        margin-top: 56px;
+        color: #64B5F6;
+      }
+
+      .introduction {
+        font-size: 32px;
+        font-weight: lighter;
+      }
+
+      .company {
+        color: black;
+        text-decoration: none;
+        font-weight: normal;
+      }
+
+      .long-intro {
+        font-size: 24px;
+        font-weight: lighter;
+      }
+
+      .social {
+
+      }
+
+      .social-a {
+        text-decoration: none;
+        color: black;
+      }
+
+      @media screen and (max-width: 500px) {
+        .hello {
+          font-size: 48px;
+          margin-top: 0;
+        }
+
+        .introduction {
+          font-size: 24px;
+        }
+
+        .long-intro {
+          font-size: inherit;
+        }
+      }
+
+      @media screen and (min-width: 500px) and (max-width: 820px) {
+        .hello {
+          margin-top: 0;
+        }
+      }
     </style>
 
     <div class="card">
-      <div class="circle">2</div>
-      <h1>Main</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+      <h1 class="hello">Hi there!</h1>
+
+      <p class="introduction">
+        My name is Sami Suo-Heikki. You can call me Sami.
+        <br>
+        I am a Developer at <a href="https://vaadin.com" class="company">Vaadin</a>.
+        And an entrepreneur at <a href="http://identio.fi" class="company">Identio</a>.
+      </p>
+
+      <p class="long-intro">
+        I can explain more. Last years I've been creating web applications and UI components.
+        Applications have been ranging from a huge ERP system to simple demos.
+        UI components have been <a href="http://webcomponents.org/" class="company">Web Components</a>.
+      </p>
+
+      <p class="long-intro">
+        I'm spending my extra time building Identio 2.0 and racing triathlons. My big dream is to work in Silicon Valley.
+        But enough about me, how have you been?
+      </p>
+
+      <p>
+        <a href="https://twitter.com/samisuoheikki" class="social-a">Twitter</a> |
+        <a href="https://github.com/samiheikki/" class="social-a">GitHub</a> |
+        <a href="https://fi.linkedin.com/in/samisuoheikki" class="social-a">LinkedIn</a> |
+        <a href="mailto:suoheikki.sami@gmail.com" class="social-a">suoheikki.sami@gmail.com</a>
+      </p>
     </div>
 
   </template>
 
   <script>
-
     Polymer({
 
       is: 'my-main'
 
     });
-
   </script>
 
 </dom-module>
