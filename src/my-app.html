@@ -1,0 +1,245 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/app-route/app-location.html">
+<link rel="import" href="../bower_components/app-route/app-route.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
+<link rel="import" href="../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-toolbar/app-toolbar.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="my-icons.html">
+
+<dom-module id="my-app">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        --app-primary-color: #2196F3;
+        --app-secondary-color: black;
+      }
+
+      app-header {
+        background-color: var(--app-primary-color);
+        color: #fff;
+      }
+
+      app-header paper-icon-button {
+        --paper-icon-button-ink-color: white;
+      }
+
+      .drawer-list {
+        margin: 0 20px;
+      }
+
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        line-height: 40px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+      }
+
+      .drawer-list a.iron-selected {
+        color: black;
+        font-weight: bold;
+      }
+
+      .drawer-list a.subroute {
+        padding-left: 32px;
+      }
+
+      .content {
+        max-width: 1021px;
+        margin: 0 auto;
+      }
+
+      .toolbar-content {
+        max-width: 973px;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      @media screen and (min-width: 700px) {
+        .narrow-screen {
+          display: none;
+        }
+        .wide-screen {
+          display: block;
+        }
+      }
+
+      @media screen and (max-width: 700px) {
+        .narrow-screen {
+          display: block;
+        }
+        .wide-screen {
+          display: none;
+        }
+      }
+
+      .menu-button {
+        padding-right: 0;
+      }
+
+      .link {
+        @apply(--layout-horizontal);
+        @apply(--layout-center-center);
+        text-decoration: none !important;
+        color: white !important;
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+
+      paper-tab {
+        padding: 0 !important;
+        --paper-tab-content: {
+          font-weight: 100 !important;
+        }
+      }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
+
+    <app-drawer-layout fullbleed force-narrow="true">
+
+      <!-- Drawer content -->
+      <app-drawer id="drawer">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <template is="dom-repeat" items="{{_pages}}" index-as="index">
+            <a href="/{{item.name}}" tabindex="-1" name="{{item.name}}">{{item.text}}</a>
+          </template>
+        </iron-selector>
+      </app-drawer>
+
+      <!-- Main content -->
+      <app-header-layout has-scrolling-region>
+
+        <app-header condenses reveals effects="waterfall">
+          <app-toolbar class="content toolbar-content">
+            <div title>Sami Suo-Heikki</div>
+            <paper-tabs selected="[[page]]" attr-for-selected="name" role="navigation" class="wide-screen">
+              <template is="dom-repeat" items="{{_pages}}" index-as="index">
+                <paper-tab name="{{item.name}}">
+                  <a href="/{{item.name}}" class="link" tabindex="-1">{{item.text}}</a>
+                </paper-tab>
+              </template>
+
+
+              <!--<paper-tab name="view1">
+                <a href="/view1" class="link" tabindex="-1">Main</a>
+              </paper-tab>
+              <paper-tab name="view2">
+                <a href="/view2" class="link" tabindex="-1">Experience</a>
+              </paper-tab>
+              <paper-tab name="view3">
+                <a href="/view3" class="link" tabindex="-1">Projects</a>
+              </paper-tab>
+              <paper-tab name="view3">
+                <a href="/view3" class="link" tabindex="-1">Skills</a>
+              </paper-tab>
+              <paper-tab name="view3">
+                <a href="/view3" class="link" tabindex="-1">Awards</a>
+              </paper-tab>
+              <paper-tab name="view3">
+                <a href="/view3" class="link" tabindex="-1">Speaks</a>
+              </paper-tab>-->
+            </paper-tabs>
+            <paper-icon-button icon="menu" drawer-toggle class="narrow-screen menu-button"></paper-icon-button>
+          </app-toolbar>
+        </app-header>
+
+        <iron-pages role="main" selected="[[page]]" attr-for-selected="name" class="content">
+          <my-main name="main"></my-main>
+          <my-experience name="experience"></my-experience>
+          <my-projects name="projects"></my-projects>
+          <my-skills name="skills"></my-skills>
+          <my-awards name="awards"></my-awards>
+          <my-speaks name="speaks"></my-speaks>
+        </iron-pages>
+
+      </app-header-layout>
+
+    </app-drawer-layout>
+
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'my-app',
+
+      properties: {
+
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        },
+
+        _narrowScreen: {
+          type: Boolean,
+          value: true
+        },
+
+        _pages: {
+          type: Array,
+          readOnly: true,
+          value: function() {
+            return [
+              {
+                name: 'main',
+                text: 'Main'
+              },
+              {
+                name: 'experience',
+                text: 'Experience'
+              },
+              {
+                name: 'projects',
+                text: 'Projects'
+              },
+              {
+                name: 'skills',
+                text: 'Skills'
+              },
+              {
+                name: 'awards',
+                text: 'Awards'
+              },
+              {
+                name: 'speaks',
+                text: 'Speaks'
+              }
+            ]
+          }
+        }
+
+      },
+
+      observers: [
+        '_routePageChanged(routeData.page)'
+      ],
+
+      _routePageChanged: function(page) {
+        this.page = page || 'main';
+      },
+
+      _pageChanged: function(page) {
+        // load page import on demand.
+        this.importHref(
+          this.resolveUrl('my-' + page + '.html'), null, null, true);
+        this.$.drawer.close();
+      }
+
+    });
+  </script>
+
+</dom-module>
