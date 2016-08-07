@@ -1,4 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-ripple/paper-ripple.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-skills">
@@ -6,25 +9,163 @@
   <template>
 
     <style include="shared-styles">
+      .mini-card {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        padding-left: 8px;
+        padding-right: 8px;
+        margin: 8px;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #757575;
+        width: 100%;
+        position: relative;
+      }
+
+      .flex-wrap {
+        @apply(--layout-horizontal);
+        @apply(--layout-wrap);
+        margin: 16px;
+      }
+
+      iron-grid {
+        margin-top: 24px;
+        margin-bottom: 24px;
+      }
+
+      .front-end-icon {
+        --iron-icon-fill-color: var(--app-primary-color);
+      }
+
+      .back-end-icon {
+        --iron-icon-fill-color: #F44336;
+      }
+
+      .other-icon {
+        --iron-icon-fill-color: #9C27B0;
+      }
+
+      .skill-heading {
+        margin-left: 24px;
+        font-size: 32px;
+      }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>my-skills</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
+    <h1 class="skill-heading" style="color: #2196F3;">Front end</h1>
+    <iron-grid>
+      <template is="dom-repeat" items="{{_frontend}}" index-as="index">
+        <div class="xl3 m3 s4 xs12">
+          <div class="mini-card">
+            <paper-ripple style="color: #2196F3;"></paper-ripple>
+            <h1 class="mini-card-heading">
+              <iron-icon icon="icons:check-box" class="front-end-icon"></iron-icon>
+              {{item}}
+            </h1>
+          </div>
+        </div>
+      </template>
+    </iron-grid>
 
+    <h1 class="skill-heading" style="color: #F44336;">Back end</h1>
+    <iron-grid>
+      <template is="dom-repeat" items="{{_backend}}" index-as="index">
+        <div class="xl3 m3 s4 xs12">
+          <div class="mini-card">
+            <paper-ripple style="color: #F44336;"></paper-ripple>
+            <h1 class="mini-card-heading">
+              <iron-icon icon="icons:check-box" class="back-end-icon"></iron-icon>
+              {{item}}
+            </h1>
+          </div>
+        </div>
+      </template>
+    </iron-grid>
+
+    <h1 class="skill-heading" style="color: #9C27B0;">Other</h1>
+    <iron-grid>
+      <template is="dom-repeat" items="{{_other}}" index-as="index">
+        <div class="xl3 m3 s4 xs12">
+          <div class="mini-card">
+            <paper-ripple style="color: #9C27B0;"></paper-ripple>
+            <h1 class="mini-card-heading">
+              <iron-icon icon="icons:check-box" class="other-icon"></iron-icon>
+              {{item}}
+            </h1>
+          </div>
+        </div>
+      </template>
+    </iron-grid>
   </template>
 
   <script>
-
     Polymer({
 
-      is: 'my-skills'
+      is: 'my-skills',
+
+      properties: {
+        _frontend: {
+          type: Array,
+          readOnly: true,
+          value: function() {
+            return [
+              'AngularJS',
+              'Angular 2',
+              'Backbone.js',
+              'CSS',
+              'FireBase',
+              'HTML',
+              'Ionic',
+              'Ionic 2',
+              'JavaScript',
+              'jQuery',
+              'LESS',
+              'Marionette.js',
+              'Mustache',
+              'Polymer',
+              'React',
+              'TypeScript',
+              'Vaadin',
+              'Web Components'
+            ];
+          }
+        },
+        _backend: {
+          type: Array,
+          readOnly: true,
+          value: function() {
+            return [
+              'APIs',
+              'CodeIgniter',
+              'Databases',
+              'Laravel',
+              'MVC',
+              'MySQL',
+              'Node.js',
+              'PHP',
+              'PostreSQL',
+              'SOAP',
+              'Web Services'
+            ]
+          }
+        },
+        _other: {
+          type: Array,
+          readOnly: true,
+          value: function() {
+            return [
+              'AWS',
+              'ERP',
+              'Git',
+              'Scrum',
+              'Start-ups',
+              'Subversion',
+              'Teamwork',
+              'XML'
+            ]
+          }
+        }
+      }
 
     });
-
   </script>
 
 </dom-module>
