@@ -1,19 +1,62 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
 
 <dom-module id="my-speaks">
 
   <template>
 
     <style include="shared-styles">
+      .mini-card {
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        margin: 8px;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #757575;
+        width: 100%;
+        position: relative;
+      }
+
+      .heading {
+        margin-left: 24px;
+        font-size: 32px;
+        color: #2196F3;
+      }
+
+      .speak-heading {
+        padding-left: 8px;
+        padding-right: 8px;
+      }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>my-speaks</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
+    <h1 class="heading">Speaks</h1>
+    <iron-grid>
+      <div class="m6 s12 xs12">
+        <div class="mini-card">
+          <iframe height="320" src="https://www.youtube.com/embed/XUP0TxX53As" frameborder="0" allowfullscreen style="width:100%;"></iframe>
+          <h1 class="speak-heading">
+            Creating a Progressive Web App (PWA) with Angular 2 at Vaadin
+          </h1>
+        </div>
+      </div>
+      <div class="m6 s12 xs12">
+        <div class="mini-card">
+          <iframe height="320" src="https://www.youtube.com/embed/jwqDCjK76q8" frameborder="0" allowfullscreen style="width:100%;"></iframe>
+          <h1 class="speak-heading">
+            Angular 2 introduction at Vaadin
+          </h1>
+        </div>
+      </div>
+
+      <div class="m6 s12 xs12">
+        <div class="mini-card">
+          <iframe height="320" src="//www.slideshare.net/slideshow/embed_code/key/pK6DPwaqOsKJam" frameborder="0" allowfullscreen style="width:100%;"></iframe>
+          <h1 class="speak-heading">
+            Polymer at Turku Front End meetup
+          </h1>
+        </div>
+      </div>
+    </iron-grid>
 
   </template>
 
