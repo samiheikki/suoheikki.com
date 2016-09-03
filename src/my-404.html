@@ -1,0 +1,64 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+
+
+<dom-module id="my-404">
+
+  <template>
+
+    <style include="shared-styles">
+      iron-icon.big-icon {
+        --iron-icon-height: 80px;
+        --iron-icon-width: 80px;
+        display: block;
+        margin: 0 auto;
+      }
+      h1 {
+        font-size: 48px;
+        text-align: center;
+        color: #757575;
+      }
+      h2 {
+        text-align: center;
+      }
+
+      h2:hover {
+        text-decoration: underline;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+    </style>
+
+    <div class="card">
+      <iron-icon icon="icons:visibility-off" class="big-icon"></iron-icon>
+      <h1>Can't find that site buddy...</h1>
+      <h2><a href$="/{{_randomPage}}">Take me somewhere else <iron-icon icon="icons:flight-takeoff"></iron-icon></a></h2>
+    </div>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      is: 'my-404',
+
+      properties: {
+        _randomPage: {
+          type: String,
+          value: function() {
+            var pages = ['main', 'experience', 'projects', 'skills', 'awards', 'speaks'];
+            return pages[Math.floor(Math.random() * pages.length)];
+          }
+        }
+      }
+
+    });
+
+  </script>
+
+</dom-module>

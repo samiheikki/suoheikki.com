@@ -136,13 +136,14 @@
           </app-toolbar>
         </app-header>
 
-        <iron-pages role="main" selected="[[page]]" attr-for-selected="name" class="content">
+        <iron-pages role="main" selected="[[page]]" attr-for-selected="name" class="content" fallback-selection="404">
           <my-main name="main"></my-main>
           <my-experience name="experience"></my-experience>
           <my-projects name="projects"></my-projects>
           <my-skills name="skills"></my-skills>
           <my-awards name="awards"></my-awards>
           <my-speaks name="speaks"></my-speaks>
+          <my-404 name="404"></my-404>
         </iron-pages>
 
       </app-header-layout>
@@ -215,8 +216,12 @@
       _pageChanged: function(page) {
         // load page import on demand.
         this.importHref(
-          this.resolveUrl('my-' + page + '.html'), null, null, true);
+          this.resolveUrl('my-' + page + '.html'), null, this._show404, true);
         this.$.drawer.close();
+      },
+
+      _show404: function() {
+        this.page = '404';
       }
 
     });
