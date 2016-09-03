@@ -24,11 +24,6 @@
         --app-secondary-color: black;
       }
 
-      app-header {
-        background-color: var(--app-primary-color);
-        color: #fff;
-      }
-
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
@@ -102,6 +97,36 @@
           font-weight: 100 !important;
         }
       }
+
+      app-header {
+        color: #fff;
+        background: var(--app-primary-color);
+        transition: all 5s linear;
+      }
+
+      app-header.main {
+        background: var(--app-primary-color);
+      }
+
+      app-header.experience {
+        background: #9C27B0;
+      }
+
+      app-header.projects {
+        background: #FF5722;
+      }
+
+      app-header.skills {
+        background: #009688;
+      }
+
+      app-header.awards {
+        background: #F44336;
+      }
+
+      app-header.speaks {
+        background: #E91E63;
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -122,7 +147,7 @@
       <!-- Main content -->
       <app-header-layout has-scrolling-region>
 
-        <app-header condenses reveals effects="waterfall">
+        <app-header condenses reveals effects="waterfall" id="header">
           <app-toolbar class="content toolbar-content">
             <div title>Sami Suo-Heikki</div>
             <paper-tabs selected="[[page]]" attr-for-selected="name" role="navigation" class="wide-screen">
@@ -218,6 +243,8 @@
         this.importHref(
           this.resolveUrl('my-' + page + '.html'), null, this._show404, true);
         this.$.drawer.close();
+
+        this.$.header.className = page;
       },
 
       _show404: function() {
