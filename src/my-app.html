@@ -105,27 +105,27 @@
       }
 
       app-header.main {
-        background: var(--app-primary-color);
+        background-color: var(--app-primary-color);
       }
 
       app-header.experience {
-        background: #9C27B0;
+        background-color: #9C27B0;
       }
 
       app-header.projects {
-        background: #FF5722;
+        background-color: #FF5722;
       }
 
       app-header.skills {
-        background: #009688;
+        background-color: #009688;
       }
 
       app-header.awards {
-        background: #F44336;
+        background-color: #F44336;
       }
 
       app-header.speaks {
-        background: #E91E63;
+        background-color: #E91E63;
       }
     </style>
 
@@ -238,13 +238,14 @@
         this.page = page || 'main';
       },
 
-      _pageChanged: function(page) {
+      _pageChanged: function(page, old) {
         // load page import on demand.
         this.importHref(
           this.resolveUrl('my-' + page + '.html'), null, this._show404, true);
         this.$.drawer.close();
 
-        this.$.header.className = page;
+        this.$.header.classList.remove(old);
+        this.$.header.classList.add(page);
       },
 
       _show404: function() {
