@@ -1,19 +1,144 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 
 <dom-module id="my-awards">
 
   <template>
 
     <style include="shared-styles">
+      .heading {
+        margin-left: 24px;
+        font-size: 32px;
+        color: #F44336;
+      }
+
+      paper-card {
+        margin: 8px;
+        width: 100%;
+        --paper-card-header-color: white;
+        display: table;
+        --paper-card-header-image: {
+          max-height: 300px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>my-awards</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
+    <h1 class="heading">Awards</h1>
+
+    <iron-grid>
+      <div class="m6 s6 xs12">
+        <paper-card heading="Startup Journey 2015" image="./images/journey.jpg" alt="Startup Journey 2015">
+          <div class="card-actions">
+            <a href="http://www.turkusciencepark.com/fi/spark-uutiset/1342/identio-ja-butterfly-effect-boostin-summer-startup-journeyn-voittajat/" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                Startup Journey is a 10-week acceleration program organized by Boost Turku for starting entrepreneurs. Startup Journey was selected as the best accelerator program in Finland 2015.
+              </p>
+              <p>
+                During the program our startup (Identio) has been building a web application to identify dyslexia. We were selected as winners with another team for our progress, business potential and our team's ability to execute our ideas.
+              </p>
+              <p>
+                In addition to winning the journey, we were also selected as the audience's favorite in the finals.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+      <div class="m6 s6 xs12">
+        <paper-card heading="Pitch Captain 2015" image="./images/pitch.jpg" alt="Pitch Captain 2015">
+          <div class="card-actions">
+            <a href="http://www.y-lehti.fi/uutiset/nayta/11904/Identio+voitti+Ship+Startup+Festivalin" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                Pitch Captain is a part of *Ship - startup festival the aim of which is to bring entrepreneurial movement to Kymenlaakso region. The best early-stage startups from all-around Finland competed for the Pitch Captain -title.
+              </p>
+              <p>
+                Our team (Identio) presented SaaS-application targeted for schools, to be used in screening dyslexia among students. Our application was considered to be most profitable and also for having the best presentation.
+              </p>
+              <p>
+                The jury consisted of members from all around the world from managing partners and Cambridge professors and U.S. Ambassador to Finland Bruce Oreck.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+      <div class="m6 s6 xs12">
+        <paper-card heading="ICT Showroom 2015" image="./images/showroom.JPG" alt="ICT Showroom 2015">
+          <div class="card-actions">
+            <a href="http://www.turkuamk.fi/fi/artikkelit/587/pikatesti-lukivaikeuksien-tunnistamiseen-nappasi-voiton-ict-showroomissa/" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                The biggest ICT ShowRoom yet, 67 teams competing from Turku area. We presented the prototype of our web application that detects user's dyslexia. Our application was considered to have the biggest social impact combined with innovation, great technical solution and commercial potential.
+              </p>
+              <p>
+                The jury consisted of representatives from Vaadin, Anders Innovations, Teleste, Boost Turku, Cerion, Crosskey, Nortal and Turku Science Park.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+      <div class="m6 s6 xs12">
+        <paper-card heading="ViLLE Edugame Hackathon 2015" image="./images/hackathon.jpg" alt="ViLLE Edugame Hackathon 2015">
+          <div class="card-actions">
+            <a href="http://villeteam.fi/" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                Our goal was to create an educational game for the ViLLE platform (https://ville.cs.utu.fi) by using Java, Vaadin, Maven and JavaScript.
+              </p>
+              <p>
+                Our team, MapStack, created an interactive map that combines geography with various subjects, where the user answers the questions by clicking the corresponding country.
+              </p>
+              <p>
+                Our project was recognized for being original, versatile; could be used to teach more than one subject and for ready integration to the ViLLE platform.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+      <div class="m6 s6 xs12">
+        <paper-card heading="Honorable mention for Excellence in Action (2015)" image="./images/palkitut_opiskelijat_ryhmakuva_2015.jpg" alt="Honorable mention for Excellence in Action (2015)">
+          <div class="card-actions">
+            <a href="http://www.turkuamk.fi/fi/ajankohtaista/764/turun-amk-avasi-lukuvuotensa/" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                Turku University of Applied Sciences is one of the leading universities of applied sciences in Finland, hosting 9,500 students studying for a Bachelor’s or Master’s degree. I received a honorable mention for my entrepreneurial spirit and success.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+    </iron-grid>
 
   </template>
 
@@ -21,7 +146,14 @@
 
     Polymer({
 
-      is: 'my-awards'
+      is: 'my-awards',
+
+      _toggleContent: function(e) {
+        var parent = e.target.parentNode.parentNode;
+        var moreInfo = parent.querySelector('iron-collapse');
+        e.target.icon = moreInfo.opened ? 'icons:expand-more' : 'icons:expand-less';
+        moreInfo.toggle();
+      }
 
     });
 
