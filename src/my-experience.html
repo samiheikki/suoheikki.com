@@ -1,19 +1,123 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-grid/iron-grid.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
 
 <dom-module id="my-experience">
 
   <template>
 
     <style include="shared-styles">
+      .heading {
+        margin-left: 24px;
+        font-size: 32px;
+        color: #9C27B0;
+      }
+
+      paper-card {
+        margin: 8px;
+        width: 97%;
+        --paper-card-header-color: white;
+        display: table;
+        --paper-card-header-image: {
+          max-height: 300px;
+        }
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      paper-icon-button {
+        color: black;
+      }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>my-experience</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
-    </div>
+    <h1 class="heading">Experience</h1>
+
+    <iron-grid>
+      <div class="m6 s6 xs12">
+        <paper-card heading="Front end developer - Vaadin" image="./images/journey.jpg" alt="Front end developer - Vaadin">
+          <div class="card-content">January 2016 - Present</div>
+          <div class="card-actions">
+            <a href="https://vaadin.com/elements" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                Vaadin Framework and Vaadin Elements are Apache licensed open source frameworks and components for your business applications.
+              </p>
+              <p>
+                In Vaadin I am a front-end developer working in R&D developing web components. My responsibilities are designing, developing and testing the new features.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+
+      <div class="m6 s6 xs12">
+        <paper-card heading="Founder, Tech Guy - Identio" image="./images/journey.jpg" alt="Founder, Tech Guy - Identio">
+          <div class="card-content">June 2015 - Present</div>
+          <div class="card-actions">
+            <a href="http://identio.fi" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                Identio is a cutting edge Finnish startup disrupting the Finnish educational system. We are currently creating the next generation of dyslexia screening that have both huge consumer and organizational uses.
+              </p>
+              <p>
+                In Identio I am the tech guy with 10 fingers on the code. I work on Identio's back and front end on my spare time.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+
+      <div class="m6 s6 xs12">
+        <paper-card heading="Software Developer - Tehden" image="./images/journey.jpg" alt="Software Developer - Tehden">
+          <div class="card-content">April 2014 - December 2015</div>
+          <div class="card-actions">
+            <a href="http://tehden.com" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                I worked in a 9 person scrum-team developing the Tehden ERP SaaS-sofware including an external online booking system and web store. My responsibilities were designing, developing and testing the new features.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+
+      <div class="m6 s6 xs12">
+        <paper-card heading="Entrepreneur & Web developer - Cloudit Solutions" image="./images/journey.jpg" alt="Entrepreneur & Web developer - Cloudit Solutions">
+          <div class="card-content">February 2013 - May 2015</div>
+          <div class="card-actions">
+            <a href="http://cloudit.fi" tabindex="-1" target="_blank">
+              <paper-icon-button icon="icons:open-in-new"></paper-icon-button>
+            </a>
+            <paper-icon-button icon="icons:expand-more" title="more info" on-tap="_toggleContent" style="float:right;">
+            </paper-icon-button>
+            <iron-collapse style="width:100%;">
+              <p>
+                During my studies at Turku University of Applied Sciences I was in charge of our degree program's co-op specialized in web development and digital marketing.
+              </p>
+            </iron-collapse>
+          </div>
+        </paper-card>
+      </div>
+    </iron-grid>
 
   </template>
 
@@ -21,7 +125,14 @@
 
     Polymer({
 
-      is: 'my-experience'
+      is: 'my-experience',
+
+      _toggleContent: function(e) {
+        var parent = e.target.parentNode.parentNode;
+        var moreInfo = parent.querySelector('iron-collapse');
+        e.target.icon = moreInfo.opened ? 'icons:expand-more' : 'icons:expand-less';
+        moreInfo.toggle();
+      }
 
     });
 
