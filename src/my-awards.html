@@ -2,10 +2,9 @@
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="../bower_components/iron-grid/iron-grid.html">
 <link rel="import" href="../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-collapse/iron-collapse.html">
-<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 
 <dom-module id="my-awards">
 
@@ -31,6 +30,10 @@
       a {
         text-decoration: none;
         color: inherit;
+      }
+
+      paper-icon-button {
+        color: black;
       }
     </style>
 
@@ -91,7 +94,8 @@
             </paper-icon-button>
             <iron-collapse style="width:100%;">
               <p>
-                The biggest ICT ShowRoom yet, 67 teams competing from Turku area. We presented the prototype of our web application that detects user's dyslexia. Our application was considered to have the biggest social impact combined with innovation, great technical solution and commercial potential.
+                The biggest ICT ShowRoom yet, 67 teams competing from Turku area. We presented the prototype of our web application that detects user's dyslexia. Our application was considered to have the biggest social impact combined with innovation, great technical
+                solution and commercial potential.
               </p>
               <p>
                 The jury consisted of representatives from Vaadin, Anders Innovations, Teleste, Boost Turku, Cerion, Crosskey, Nortal and Turku Science Park.
@@ -143,7 +147,6 @@
   </template>
 
   <script>
-
     Polymer({
 
       is: 'my-awards',
@@ -156,7 +159,6 @@
       }
 
     });
-
   </script>
 
 </dom-module>
