@@ -10,7 +10,11 @@
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-localstorage/iron-localstorage.html">
 <link rel="import" href="../bower_components/paper-tabs/paper-tabs.html">
+<link rel="import" href="../bower_components/paper-badge/paper-badge.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="my-icons.html">
 
 <dom-module id="my-app">
@@ -127,7 +131,30 @@
       app-header.speaks {
         background-color: #E91E63;
       }
+
+      .dialog-heading {
+        margin-bottom: 0;
+      }
+
+      .dialog-text {
+        border-bottom: 1px solid #e8e8e8;
+        padding-bottom: 10px;
+        color: #757575;
+        margin-top: 10px !important;
+      }
+
+      .dialog-icon {
+        color: red !important;
+      }
+
+      .dialog-link {
+        text-decoration: none;
+        color: inherit;
+      }
     </style>
+
+    <iron-localstorage name="github-feed" value="{{_githubEntries}}"></iron-localstorage>
+    <iron-localstorage name="github-count" value="{{_githubFeedCount}}"></iron-localstorage>
 
     <app-location route="{{route}}"></app-location>
     <app-route route="{{route}}" pattern="/:page" data="{{routeData}}" tail="{{subroute}}"></app-route>
@@ -157,14 +184,23 @@
                 </paper-tab>
               </template>
             </paper-tabs>
+
             <paper-icon-button icon="menu" drawer-toggle class="narrow-screen menu-button"></paper-icon-button>
+            <template is="dom-if" if="{{_githubEntries}}">
+              <paper-icon-button id="number" src="../images/Octocat.png" alt="Github Activity" on-tap="_openGithubFeedDialog">
+              </paper-icon-button>
+            </template>
+            <template is="dom-if" if="{{_githubFeedCount}}">
+              <paper-badge for="number" label="{{_githubFeedCount}}" on-tap="_openGithubFeedDialog">
+              </paper-badge>
+            </template>
           </app-toolbar>
         </app-header>
 
         <iron-pages role="main" selected="[[page]]" attr-for-selected="name" class="content" fallback-selection="404">
           <my-main name="main"></my-main>
           <my-experience name="experience"></my-experience>
-          <my-projects name="projects"></my-projects>
+          <!--<my-projects name="projects"></my-projects>-->
           <my-skills name="skills"></my-skills>
           <my-awards name="awards"></my-awards>
           <my-speaks name="speaks"></my-speaks>
@@ -174,6 +210,21 @@
       </app-header-layout>
 
     </app-drawer-layout>
+
+    <paper-dialog id="feeddialog" modal>
+      <template is="dom-repeat" items="{{_githubEntries}}">
+        <h4 class="dialog-heading">{{item.publishedDate}}</h4>
+        <p class="dialog-text">
+          {{item.title}}
+          <a href$="{{item.link}}" tabindex="-1" target="_blank" class="dialog-link">
+            <paper-icon-button icon="open-in-browser"></paper-icon-button>
+          </a>
+        </p>
+      </template>
+     <div class="buttons">
+        <paper-button dialog-dismiss autofocus>Close</paper-button>
+      </div>
+    </paper-dialog>
 
   </template>
 
@@ -199,28 +250,24 @@
           type: Array,
           readOnly: true,
           value: function() {
-            return [
-              {
+            return [{
                 name: 'main',
                 text: 'Main'
-              },
-              {
+              }, {
                 name: 'experience',
                 text: 'Experience'
               },
-              {
+              /*{
                 name: 'projects',
                 text: 'Projects'
-              },
+              },*/
               {
                 name: 'skills',
                 text: 'Skills'
-              },
-              {
+              }, {
                 name: 'awards',
                 text: 'Awards'
-              },
-              {
+              }, {
                 name: 'speaks',
                 text: 'Speaks'
               }
@@ -250,6 +297,20 @@
 
       _show404: function() {
         this.page = '404';
+      },
+
+      _openGithubFeedDialog: function() {
+        this.$.feeddialog.open();
+        this._githubFeedCount = 0;
+      },
+
+      updateGithubFeed: function(feed) {
+        try {
+          this._githubEntries = feed.entries;
+          this._githubFeedCount = feed.entries.length;
+        } catch(e) {
+          
+        }
       }
 
     });
