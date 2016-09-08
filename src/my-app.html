@@ -277,8 +277,13 @@
               }
             ]
           }
+        },
+        _githubEntries: {
+          type: Array
+        },
+        _githubFeedCount: {
+          type: Number
         }
-
       },
 
       observers: [
@@ -313,7 +318,15 @@
           this._githubEntries = feed.entries;
           this._githubFeedCount = feed.entries.length;
         } catch(e) {
+          console.log(e);
+        }
+      },
 
+      ready: function() {
+        if (window.githubFeed) {
+          this.async(function(){
+            this.updateGithubFeed(window.githubFeed);
+          });
         }
       }
 

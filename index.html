@@ -72,6 +72,8 @@
           var myApp = document.querySelector('my-app');
           if (myApp.is && myApp.updateGithubFeed) {
             myApp.updateGithubFeed(result.feed);
+          } else {
+            window.githubFeed = result.feed;
           }
         }
       });
