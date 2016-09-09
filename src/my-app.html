@@ -163,6 +163,22 @@
         color: inherit;
         text-decoration: none;
       }
+
+      .social-a {
+        text-decoration: none;
+        color: black;
+      }
+
+      .footer {
+        max-width: 984px;
+      }
+
+      @media screen and (max-width: 1035px) {
+        .footer {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
     </style>
 
     <iron-localstorage name="github-feed" value="{{_githubEntries}}"></iron-localstorage>
@@ -221,7 +237,16 @@
           <my-speaks name="speaks"></my-speaks>
           <my-404 name="404"></my-404>
         </iron-pages>
-
+        <template is="dom-if" if="{{!isMainPage}}">
+          <div class="footer content">
+            <p>
+              <a href="https://twitter.com/samisuoheikki" class="social-a">Twitter</a> |
+              <a href="https://github.com/samiheikki/" class="social-a">GitHub</a> |
+              <a href="https://fi.linkedin.com/in/samisuoheikki" class="social-a">LinkedIn</a> |
+              <a href="mailto:suoheikki.sami@gmail.com" class="social-a">suoheikki.sami@gmail.com</a>
+            </p>
+          </div>
+        </template>
       </app-header-layout>
 
     </app-drawer-layout>
@@ -296,6 +321,10 @@
         },
         _githubFeedCount: {
           type: Number
+        },
+        isMainPage: {
+          type: Boolean,
+          computed: '_computeIsMainPage(page)'
         }
       },
 
@@ -341,6 +370,10 @@
             this.updateGithubFeed(window.githubFeed);
           });
         }
+      },
+
+      _computeIsMainPage: function(page) {
+        return page === 'main';
       }
 
     });
