@@ -61,7 +61,7 @@
       }
 
       .toolbar-content {
-        max-width: 973px;
+        max-width: 999px;
         padding-left: 24px;
         padding-right: 24px;
       }
@@ -153,6 +153,16 @@
         text-decoration: none;
         color: inherit;
       }
+
+      .face {
+        --iron-icon-height: 32px;
+        --iron-icon-width: 32px;
+      }
+
+      .main-a {
+        color: inherit;
+        text-decoration: none;
+      }
     </style>
 
     <iron-localstorage name="github-feed" value="{{_githubEntries}}"></iron-localstorage>
@@ -178,7 +188,13 @@
 
         <app-header condenses reveals effects="waterfall" id="header">
           <app-toolbar class="content toolbar-content">
-            <div title>Sami Suo-Heikki</div>
+            <div title>
+              <a href="/main" class="main-a">
+                <iron-icon src="../images/profile-small.png" class="face"></iron-icon>
+                Sami Suo-Heikki
+              </a>
+
+            </div>
             <paper-tabs selected="[[page]]" attr-for-selected="name" role="navigation" class="wide-screen">
               <template is="dom-repeat" items="{{_pages}}" index-as="index">
                 <paper-tab name="{{item.name}}">
