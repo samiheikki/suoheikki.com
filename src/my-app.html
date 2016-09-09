@@ -254,7 +254,7 @@
     <paper-dialog id="feeddialog" modal>
       <paper-dialog-scrollable>
         <template is="dom-repeat" items="{{_githubEntries}}">
-          <h4 class="dialog-heading">{{item.publishedDate}}</h4>
+          <h4 class="dialog-heading">{{_formatPublishDate(item.publishedDate)}}</h4>
           <p class="dialog-text">
             {{item.title}}
             <a href$="{{item.link}}" tabindex="-1" target="_blank" class="dialog-link">
@@ -374,6 +374,14 @@
 
       _computeIsMainPage: function(page) {
         return page === 'main';
+      },
+
+      _formatPublishDate: function(date) {
+        try {
+          return new Date(date).toLocaleString();
+        } catch (e) {
+          return '';
+        }
       }
 
     });
