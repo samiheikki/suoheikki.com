@@ -28,6 +28,11 @@
         display: block;
         --app-primary-color: #2196F3;
         --app-secondary-color: black;
+
+        --app-experience-color: #9C27B0;
+        --app-skills-color: #009688;
+        --app-awards-color: #F44336;
+        --app-speaks-color: #E91E63;
       }
 
       app-header paper-icon-button {
@@ -116,23 +121,23 @@
       }
 
       app-header.experience {
-        background-color: #9C27B0;
+        background-color: var(--app-experience-color);
       }
 
-      app-header.projects {
+      /*app-header.projects {
         background-color: #FF5722;
-      }
+      }*/
 
       app-header.skills {
-        background-color: #009688;
+        background-color: var(--app-skills-color);
       }
 
       app-header.awards {
-        background-color: #F44336;
+        background-color: var(--app-awards-color);
       }
 
       app-header.speaks {
-        background-color: #E91E63;
+        background-color: var(--app-speaks-color);
       }
 
       .dialog-heading {
@@ -141,7 +146,6 @@
 
       .dialog-text {
         border-bottom: 1px solid #e8e8e8;
-        padding-bottom: 10px;
         color: #757575;
         margin-top: 10px !important;
       }
@@ -179,6 +183,25 @@
           padding-left: 20px;
           padding-right: 20px;
         }
+      }
+
+      .dialog-change-color.main {
+        color: var(--app-primary-color);
+      }
+      .dialog-change-color.experience {
+        color: var(--app-experience-color);
+      }
+      .dialog-change-color.projects {
+        color: var(--app-projects-color);
+      }
+      .dialog-change-color.skills {
+        color: var(--app-skills-color);
+      }
+      .dialog-change-color.awards {
+        color: var(--app-awards-color);
+      }
+      .dialog-change-color.speaks {
+        color: var(--app-speaks-color);
       }
     </style>
 
@@ -254,6 +277,7 @@
 
     <paper-dialog id="feeddialog" modal>
       <paper-dialog-scrollable>
+        <h2 class="dialog-change-color" id="dialogheading">GitHub feed</h2>
         <template is="dom-repeat" items="{{_githubEntries}}">
           <h4 class="dialog-heading">{{_formatPublishDate(item.publishedDate)}}</h4>
           <p class="dialog-text">
@@ -265,7 +289,7 @@
         </template>
       </paper-dialog-scrollable>
      <div class="buttons">
-        <paper-button dialog-dismiss autofocus>Close</paper-button>
+        <paper-button dialog-dismiss autofocus class="dialog-change-color" id="dialogbutton">Close</paper-button>
       </div>
     </paper-dialog>
 
@@ -342,9 +366,7 @@
         this.importHref(
           this.resolveUrl('my-' + page + '.html'), null, this._show404, true);
         this.$.drawer.close();
-
-        this.$.header.classList.remove(old);
-        this.$.header.classList.add(page);
+        this._changeColors(page, old);
       },
 
       _show404: function() {
@@ -383,6 +405,15 @@
         } catch (e) {
           return '';
         }
+      },
+
+      _changeColors: function(page, old) {
+        this.$.header.classList.remove(old);
+        this.$.header.classList.add(page);
+        this.$.dialogbutton.classList.remove(old);
+        this.$.dialogbutton.classList.add(page);
+        this.$.dialogheading.classList.remove(old);
+        this.$.dialogheading.classList.add(page);
       }
 
     });
