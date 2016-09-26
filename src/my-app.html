@@ -276,8 +276,8 @@
     </app-drawer-layout>
 
     <paper-dialog id="feeddialog" modal>
+      <h2 class="dialog-change-color" id="dialogheading">GitHub feed</h2>
       <paper-dialog-scrollable>
-        <h2 class="dialog-change-color" id="dialogheading">GitHub feed</h2>
         <template is="dom-repeat" items="{{_githubEntries}}">
           <h4 class="dialog-heading">{{_formatPublishDate(item.publishedDate)}}</h4>
           <p class="dialog-text">
