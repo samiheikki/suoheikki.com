@@ -54,6 +54,10 @@
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
           background-color: #fff;
         }
+
+        .hide-mobile {
+          display: none !important;
+        }
       }
 
       @media screen and (min-width: 500px) and (max-width: 820px) {
@@ -69,7 +73,7 @@
         }
       }
 
-      @media screen and (min-width: 500px) and (max-width: 1031px) {
+      @media screen and (min-width: 501px) and (max-width: 1031px) {
         .card {
           margin: 0;
         }
@@ -80,7 +84,7 @@
       <h1 class="hello">Hi there!</h1>
 
       <p class="introduction">
-        My name is Sami Suo&#x2011;Heikki. You can call me Sami.
+        My name is Sami<span class="hide-mobile"> Suo&#x2011;Heikki. You can call me Sami</span>.
         <br> I am a Developer at <a href="https://vaadin.com" class="company">Vaadin</a>, and an Entrepreneur at <a href="http://identio.fi" class="company">Identio</a>.
       </p>
 
